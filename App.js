@@ -14,6 +14,7 @@ import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import Icon from 'react-native-vector-icons/Ionicons';
 //screens import
 import HomeScreen from './screens/HomeScreen.js';
 import DetailScreen from './screens/DetailsScreen.js';
@@ -37,6 +38,16 @@ const HomeStackScreen = ({navigation}) => (
       component={HomeScreen}
       options={{
         title: 'Overview',
+        headerLeft: () => (
+          <Icon.Button
+            name="github"
+            size={25}
+            backgroundColor="#009387"
+            onPress={() => {
+              navigation.openDrawer();
+            }}
+          />
+        ),
       }}
     />
   </HomeStack.Navigator>
