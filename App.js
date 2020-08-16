@@ -12,74 +12,16 @@ import React from 'react';
 
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import Icon from 'react-native-vector-icons/Ionicons';
-//screens import
-import HomeScreen from './screens/HomeScreen.js';
-import DetailScreen from './screens/DetailsScreen.js';
-
-const HomeStack = createStackNavigator();
-const DetailStack = createStackNavigator();
-
-const HomeStackScreen = ({navigation}) => (
-  <HomeStack.Navigator
-    screenOptions={{
-      headerStyle: {
-        backgroundColor: '#009387',
-      },
-      headerTinColor: '#fff',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    }}>
-    <HomeStack.Screen
-      name="Home"
-      component={HomeScreen}
-      options={{
-        title: 'Overview',
-        headerLeft: () => (
-          <Icon.Button
-            name="github"
-            size={25}
-            backgroundColor="#009387"
-            onPress={() => {
-              navigation.openDrawer();
-            }}
-          />
-        ),
-      }}
-    />
-  </HomeStack.Navigator>
-);
-
-const DetailStackScreen = ({navigation}) => (
-  <DetailStack.Navigator
-    screenOptions={{
-      headerStyle: {
-        backgroundColor: '#009387',
-      },
-      headerTinColor: '#fff',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
-    }}>
-    <DetailStack.Screen
-      name="Detail"
-      component={DetailScreen}
-      options={{
-        title: 'Detail',
-      }}
-    />
-  </DetailStack.Navigator>
-);
+import MainTabScreen from './screens/MainTabScreen.js';
+import {DrawerContent} from './screens/DrawerContent';
 const Drawer = createDrawerNavigator();
+
 const App = () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={HomeStackScreen} />
-        <Drawer.Screen name="Detail" component={DetailStackScreen} />
+      <Drawer.Navigator drawerContent={(props) => <DrawerContent {...props} />}>
+        <Drawer.Screen name="Home" component={MainTabScreen} />
       </Drawer.Navigator>
       {/* <Stack.Navigator
         screenOptions={{
